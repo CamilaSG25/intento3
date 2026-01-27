@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Hardware y conexiones
+title: Práctica 1
 nav_order: 2
 ---
 
