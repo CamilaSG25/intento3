@@ -19,25 +19,37 @@ En esta sección explicaremos lo que se realizo en nuestra primera práctica.
 
 ---
 
-## Componentes principales
+## Blink con Arduino Uno / Nano
 
-- **Arduino UNO**  
-  Microcontrolador que ejecuta GRBL y envía las señales de control a los drivers.
+- **Objetivo**  
+  Implementar un programa básico en la plataforma Arduino que permita el encendido y apagado periódico del LED integrado en la placa, con el fin de verificar la correcta comunicación entre el entorno de desarrollo (Arduino IDE) y la placa de control
 
   ![Arduino UNO](assets/img/arduino.jpg)
 
-- **CNC Shield V3**  
-  Tarjeta que se monta sobre el Arduino y proporciona conectores para drivers, motores, finales de carrera y salidas de control.
+- **Conexión**  
+  La comunicación entre la computadora y la placa Arduino Uno/Nano se realizó mediante comunicación serial por USB. Este tipo de comunicación permite la transferencia de datos y programas
 
-  ![CNC Shield V3](assets/img/cnc_shield.jpg)
+  Para establecer correctamente la comunicación entre la computadora y la placa Arduino, se realizaron los siguientes pasos dentro del Arduino IDE:
 
-- **Drivers A4988** (o similares) para X, Y, Z  
-  Módulos que controlan la corriente de los motores paso a paso y permiten microstepping.
+  Se seleccionó el modelo de la placa utilizada (Arduino Uno o Arduino Nano) desde el menú Herramientas → Placa.
 
-  ![Drivers A4988](assets/img/a4988.jpg)
+  Se identificó y seleccionó el puerto de comunicación correspondiente desde Herramientas → Puerto, el cual aparece como un puerto serial (por ejemplo, COM8).
 
-- **Motores NEMA 17**  
-  Motores paso a paso bipolares de 4 cables, típicos en impresoras 3D y CNC pequeñas.
+  Una vez configurados la placa y el puerto, el programa fue compilado y cargado correctamente en el microcontrolador mediante el botón de carga del entorno de desarrollo.
+
+  ![CNC Shield V3](assets/img/conexion_arduino.jpeg)
+
+- **Codigo** 
+Dentro de la función setup(), se configuró el pin del LED como salida mediante la instrucción pinMode. En la función loop(), se implementó la lógica de encendido y apagado del LED utilizando las instrucciones digitalWrite, acompañadas de retardos temporales de 500 milisegundos mediante la función delay()
+
+
+  ![Drivers A4988](assets/img/Programa_arduino.jpeg)
+
+- **Video funcionando**  
+    <video controls width="640">
+      <source src="{{ '/assets/img/arduino.mp4' | relative_url }}" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
 
   ![Motores NEMA 17](assets/img/motor.png)
 
