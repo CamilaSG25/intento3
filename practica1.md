@@ -79,7 +79,8 @@ Dentro de la función setup(), se configuró el pin del LED como salida mediante
 
 ## ESP32‑WROOM‑32
 
-  **Conexión**:
+  **Conexión**
+
     Para la correcta programación de la placa ESP32-WROOM-32, se realizaron los siguientes pasos en el Arduino IDE:
 
     Se seleccionó la placa ESP32-WROOM-DA Module desde el menú Herramientas → Placa, correspondiente al módulo utilizado en la práctica.
