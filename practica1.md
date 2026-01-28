@@ -111,82 +111,34 @@ Dentro de la función setup(), se configuró el pin del LED como salida mediante
 
 ---
 
-## 3. Conexión de motores
+## XIAO ESP32S3 Sense
 
-- Conecta cada motor NEMA 17 a su respectivo conector en la CNC Shield:
-  - **Eje X** → Ejemplo: carro con banda dentada.
-  - **Eje Y** → Ejemplo: mesa / base con husillo.
-  - **Eje Z** → Ejemplo: mecanismo de cremallera, husillo o el eje vertical de tu herramienta.
+  - **Conexión** 
 
-![Maquina ejemplo CNC](assets/img/cnc.jpg)
+    Para la programación de la placa se utilizó el entorno Thonny, configurado para trabajar con MicroPython. Dentro de las opciones del intérprete se seleccionó MicroPython (ESP32) y se habilitó la detección automática del puerto serial correspondiente a la placa.
 
-### 3.1. Motores con conector estándar
+    Debido a las características del dispositivo, fue necesario instalar el firmware de MicroPython para ESP32-S3 utilizando la herramienta integrada en Thonny. Durante este proceso se seleccionó el puerto serial asignado a la placa y la versión correspondiente del firmware, permitiendo que el dispositivo quedara listo para ejecutar scripts en MicroPython.
 
-Si estás usando motores NEMA con **conector estándar** (como los que suelen traer cable preensamblado):
+    ![sense conexión](assets/img/conexion_sense_1.jpeg)
 
-- Normalmente basta con insertar el conector en el puerto correspondiente (X, Y, Z) de la shield.
-- En muchos cables, el **cable rojo** queda en la parte superior del conector en la shield (pero esto puede variar según fabricante; revisa el datasheet si es posible).
+    ![sense conexión2](assets/img/conexion_sense_2.jpeg)
 
-![Motor con conector estándar](assets/img/motor_estandar.jpg)
-![Motor con conector estándar2](assets/img/cables_motor.jpg)
+  - **Código** 
 
-### 3.2. Motores bipolares de 4 cables sin conector estándar
+    El programa fue desarrollado en MicroPython y tiene como objetivo realizar el parpadeo del LED integrado en la placa XIAO ESP32S3 Sense, utilizando programación directa sobre el microcontrolador.
 
-Si tus motores son bipolares de **4 cables sueltos**, primero debes identificar las **bobinas**:
+    En el código se importan las bibliotecas machine y time, las cuales permiten el control de los pines digitales y la gestión de retardos de tiempo, respectivamente. El pin correspondiente al LED se configuró como salida digital mediante la instrucción Pin.
 
-1. Con un multímetro en modo continuidad o resistencia:
-   - Encuentra qué pares de cables forman cada bobina (tendrán resistencia de unos pocos ohms).
-   - Por ejemplo:
-     - Bobina A → cables (rojo, azul).
-     - Bobina B → cables (verde, negro).
+    Debido a las características de la placa, el LED opera en configuración activo-bajo, por lo que un valor lógico bajo (0) enciende el LED, mientras que un valor lógico alto (1) lo apaga. La estructura while True permite que el parpadeo del LED se ejecute de manera continua, incorporando retardos de 0.5 segundos para controlar la frecuencia de encendido y apagado.
 
-2. Conecta las bobinas al driver (en el conector de la shield) en el siguiente orden de arriba a abajo:
+    ![sense cod](assets/img/cod sense.jpeg)
 
-   ```text
-   A+   A−   B+   B−
-   ```
 
-3. Si al hacer un jog el motor **tiembla pero no gira**, probablemente los cables estén cruzados o las bobinas invertidas:
-   - Cambia el orden de los cables (por ejemplo intercambiando A y B) hasta que el giro sea suave y continuo.
-
-> ⚠️ No conectes ni desconectes los motores con la fuente encendida; puedes dañar tanto el driver como el motor.
-
----
-
-## 4. Finales de carrera (opcional)
-
-Los finales de carrera mejoran la seguridad y permiten hacer **homing** automático.
-
-- Tipo recomendado: **microswitch mecánico con palanca**, usados en modo **NC** (normalmente cerrado).
-
-  ![Finales de carrera](assets/img/switch.jpg)
-
-- Conexión típica en el CNC Shield (conector X-, Y-, Z-):
-  - `C` del switch → **GND (G)**.
-  - `NC` del switch → **S (Signal)**.
-  - Deja sin conectar el pin de **+5 V**.
-
-![Conexión de finales de carrera](assets/img/finales_c.jpg)
-
-Usar NC tiene varias ventajas:
-
-- Si se corta un cable o se desconecta un switch, GRBL lo detecta como fallo.
-- Reduce el riesgo de que la máquina se mueva fuera de límites sin detectar el error.
-
-Más adelante, en GRBL, se activan:
-
-- **Homing** (`$22=1`).
-- **Límites duros** (`$21=1`) y/o **límites suaves** (`$20=1`).
-
-Los detalles de configuración de homing y límites se describen en la sección de [Calibración](calibracion.md).
-
----
-
-Con estos pasos, la parte de **hardware y conexiones físicas** queda lista para pasar a:
-
-- Cargar GRBL en el Arduino.
-- Configurar parámetros básicos.
-- Empezar a probar movimientos desde el software.
+- **Video funcionando**  
+    <video controls width="640">
+      <source src="{{ '/assets/img/nano.mp4' | relative_url }}" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
 
 ---
 
