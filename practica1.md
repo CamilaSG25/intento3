@@ -57,13 +57,17 @@ Dentro de la función setup(), se configuró el pin del LED como salida mediante
 
     ![arduino nano conexión](assets/img/conexion_nano.jpeg)
 
+    Durante la programación del Arduino Nano, fue necesario ajustar la configuración del procesador debido a que se utilizó una versión antigua de la placa. Para ello, en el Arduino IDE se seleccionó la opción ATmega328P (Old Bootloader) desde el menú Herramientas → Procesador.
+
+    ![arduino nano conexión](assets/img/nano_viejo.jpeg)
+
   - **Código** 
 
     El programa desarrollado tiene como finalidad controlar el encendido y apagado del LED integrado en la placa Arduino Nano, identificado como LED_BUILTIN.
 
     En la función setup(), se configuró el pin del LED como salida digital mediante la instrucción pinMode. Posteriormente, en la función loop(), se implementó una secuencia cíclica en la cual el LED se enciende y apaga utilizando la instrucción digitalWrite, incorporando retardos de tiempo mediante la función delay() para controlar la velocidad del parpadeo.
 
-  ![arduino nano código](assets/img/cod_nano.png)
+  ![arduino nano código](assets/img/cod nano.png)
 
 - **Video funcionando**  
     <video controls width="640">
@@ -73,31 +77,26 @@ Dentro de la función setup(), se configuró el pin del LED como salida mediante
 
 ---
 
-## 2. Alimentación
+## ESP32‑WROOM‑32
 
-- Usa una fuente DC con salida entre **12–24 V**, dependiendo de tus motores y drivers:
-  - 12 V → más suave y seguro para empezar.
-  - 24 V → mejor respuesta a altas velocidades (si drivers y motores lo soportan).
+  **Conexión**:
+    Para la correcta programación de la placa ESP32-WROOM-32, se realizaron los siguientes pasos en el Arduino IDE:
 
-- Como guía práctica para la **corriente** de la fuente:
+    Se seleccionó la placa ESP32-WROOM-DA Module desde el menú Herramientas → Placa, correspondiente al módulo utilizado en la práctica.
 
-  > Corriente recomendada ≈ (número de motores) × (corriente por fase del motor) × 0.7–0.8  
-  > Ejemplo: 3 motores de 1.5 A → fuente de al menos ~3–4 A (mejor 5 A).
+    Se eligió el puerto de comunicación serial asignado a la placa desde Herramientas → Puerto, identificado como un puerto USB (por ejemplo, COM10).
 
-- Conecta la fuente al borne de tornillo del CNC Shield:
-  - `+` → positivo de la fuente.
-  - `-` o `GND` → negativo de la fuente.
+    Una vez configurados la placa y el puerto, se procedió a compilar y cargar el programa en el microcontrolador.
 
-- El Arduino se alimenta por **USB** desde la computadora; la shield y los motores por la **fuente DC**:
-  - Esto ayuda a separar el ruido de los motores de la lógica.
+     ![ ESP32‑WROOM‑32 conexión](assets/img/wroom.jpeg)
 
-> ✅ **Recomendación:** usa cables adecuados para la corriente (por ejemplo, 18–20 AWG para 3–5 A) y aprieta bien los tornillos de la bornera.
+  > ✅ **Recomendación:** usa cables adecuados para la corriente (por ejemplo, 18–20 AWG para 3–5 A) y aprieta bien los tornillos de la bornera.
 
-> 🔎 **Verificación:** antes de conectar los motores, mide con un multímetro el voltaje en la bornera:
-> - Polaridad correcta.
-> - Voltaje dentro del rango esperado.
+  > 🔎 **Verificación:** antes de conectar los motores, mide con un multímetro el voltaje en la bornera:
+  > - Polaridad correcta.
+  > - Voltaje dentro del rango esperado.
 
-![Conexión de fuente a la shield](assets/img/fuente_c.jpg)
+  ![Conexión de fuente a la shield](assets/img/fuente_c.jpg)
 
 ---
 
