@@ -79,9 +79,9 @@ Dentro de la función setup(), se configuró el pin del LED como salida mediante
 
 ## ESP32‑WROOM‑32
 
-  - **Conexión**
+  - **Conexión 3**
 
-    Para la correcta programación de la placa ESP32-WROOM-32, se realizaron los siguientes pasos en el Arduino IDE:
+    Para la correcta programación de la placa ESP32-WROOM-32, se realizaron los siguientes pasos en el Arduino IDE
 
     Se seleccionó la placa ESP32-WROOM-DA Module desde el menú Herramientas → Placa, correspondiente al módulo utilizado en la práctica.
 
@@ -92,6 +92,7 @@ Dentro de la función setup(), se configuró el pin del LED como salida mediante
     ![SP32‑WROOM‑32 conexión](assets/img/wroom.jpeg)
 
   - **Código** 
+
   El programa desarrollado tiene como objetivo realizar el parpadeo del LED integrado en la placa ESP32-WROOM-32, el cual se encuentra conectado al pin digital 2.
 
   Debido a que en algunas configuraciones del ESP32 el pin del LED integrado no se encuentra definido por defecto, se utilizó una directiva de preprocesador (#ifdef) para definir el pin correspondiente (LED_BUILTIN) únicamente en caso de que no estuviera previamente declarado.
@@ -101,6 +102,7 @@ Dentro de la función setup(), se configuró el pin del LED como salida mediante
   ![wroom cod](assets/img/wroom_cod.jpeg)
 
   - **Video funcionando**  
+
     <video controls width="640">
       <source src="{{ '/assets/img/video_wroom.mp4' | relative_url }}" type="video/mp4">
       Tu navegador no soporta video HTML5.
